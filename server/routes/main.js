@@ -1,11 +1,20 @@
 const express = require('express');
 const router = express.Router();
 router.get ('',(req,res) =>{
-    res.render('index');
+    const locals ={
+        title : "My page",
+        description: " My main page"
+    }
+    res.render('index', locals);
+    
 })
 
 
 router.get ('/about',(req,res) =>{
-    res.render('about');
+    const locals ={
+        title : "My about page",
+        description: " My about page"
+    }
+    res.render('about',locals);
 })
 module.exports = router;
