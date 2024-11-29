@@ -3,8 +3,14 @@ require('dotenv').config(); // Load environment variables
 const express = require('express'); // Require the express module
 const expressLayouts = require('express-ejs-layouts'); // Require express-ejs-layouts
 
+const connectDB = require('./server/config/db');
+
 const app = express(); // Create an Express application
 const port = 5000|| process.env.PORT ; // Define the port
+
+
+
+connectDB();
 
 app.use(express.static('public'));
 // Set EJS as the view engine
