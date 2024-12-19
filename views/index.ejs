@@ -4,14 +4,18 @@
 </div>
 <img src="/img/hero-image.webp" alt="person looking out through window" class="hero-image" width="981" height="528">
 <section class="articles">
-    <h2 class="articles_heading">Latest Posts</h2>
-    <ul class="article-ul">
+    <h2 class="articles__heading">Latest Posts</h2>
+    <ul class="articles-u1">
+        <% data.forEach(post =>  { %>
         <li>
-            <a href="#">
-                <span>Post Title</span>
-                <span class="article-list_date">Date</span>
-            </a>
+        <a href="#">
+            <span><%=post.title%></span>
+            <span class=" article-list__date"><%=post.createdAt%></span>
+        </a>
+
         </li>
+        <% }) %>
     </ul>
-    <a href ="#" class="pagination"> &lt; View Older Post</a>
+
+   
 </section>
