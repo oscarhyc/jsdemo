@@ -1,24 +1,30 @@
+const mysql = require('mysql2/promise');
 
- const mongoose = require('mongoose');
+const config = {
+    host: process.env.DB_SERVER,
+    user: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
+    port: parseInt(process.env.DB_PORT, 10) || 3306,
+};
 
- const postSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true
-  },
-  body: {
-    type: String,
-    required: true
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now
-  },
-  updatedAt: {
-    type: Date,
-    default: Date.now
-  }
-});
+const Post = {
+    getAllPosts: async () => {
+        let connection; // Declare the connection variable
+        try {
+            connection = await mysql.createConnection(config); // Create a new connection
+            const [posts] = await connection.execute('SELECT * FROM posts'); // Execute the query
+            return posts; // Return the fetched posts
+        } catch (err) {
+            console.error('Database query failed:', err.message); // Log any errors
+            throw err; // Rethrow the error for handling elsewhere
+        } finally {
+            if (connection) {
+                await connection.end(); // Ensure the connection is closed
+            }
+        }
+    }
+};
 
-const Post = mongoose.model('Post', postSchema);
+
 module.exports = Post;

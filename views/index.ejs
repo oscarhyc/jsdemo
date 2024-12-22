@@ -6,11 +6,13 @@
 <section class="articles">
     <h2 class="articles__heading">Latest Posts</h2>
     <ul class="articles-u1">
-        <% data.forEach(post =>  { %>
+        
+        <% data1.forEach(function(item) {  %>
         <li>
         <a href="#">
-            <span><%=post.title%></span>
-            <span class=" article-list__date"><%=post.createdAt%></span>
+            <span><%=item.title%></span>
+            <span><%=item.body%></span>
+            <span class=" article-list__date"><%=item.createdAt%></span>
         </a>
 
         </li>

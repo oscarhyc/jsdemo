@@ -6,13 +6,19 @@ router.get ('', async (req,res) =>{
         title : "My page",
         description: " My main page"
     }
-
-    try{
-        const data = await Post.find();
-        res.render('index', {locals,data});
-    } catch (error){
-        console.log(error);
+    const data ={
+        title : "My page",
+        createdAt : "2024-01-01"
+  
     }
+
+
+   
+
+       const data1 = await Post.getAllPosts();
+        
+        res.render('index', {locals,data1});
+
     
 })
 
